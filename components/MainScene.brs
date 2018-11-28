@@ -13,6 +13,26 @@ sub init()
     m.myKeyboardValue = m.top.findNode("myKeyboardValue")
     m.myKeyboardValue.visible = false
     m.field = ""
+    
+    'm.name = "Sunanda"
+    m.sec = CreateObject("roRegistrySection", "UserAuthentication")
+    'm.sec.Write("UserName1",m.name)
+    'm.sec.Flush()
+    
+   
+    
+    if m.sec.Exists("UserNameRegistry") and m.sec.Exists("UserPasswordRegistry")
+        print "Already Logged in"
+        print "UserNameRegistry : ",m.sec.Read("UserNameRegistry")
+        print "UserPasswordRegistry : ",m.sec.Read("UserPasswordRegistry")
+        
+        m.details = m.top.createChild("userDetails")
+        m.details.visible = true
+        m.details.setFocus(true)  
+        m.details.userNameLabel = m.sec.Read("UserNameRegistry")
+        print "See your poster..!!!"
+    end if
+    
 End sub
 
 sub onInputUserName()
@@ -31,7 +51,6 @@ end sub
 
 sub onLoginButton()
     print "Login Button Clicked"
-     
     m.details = m.top.createChild("userDetails")
     m.details.visible = true
     m.details.setFocus(true)  
@@ -66,13 +85,17 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         print "key - play"
             if m.field = "userName"
                 print "entering user name"
-                m.myUserName.text = m.myKeyboardValue.text
+                m.myUserName.text = m.myKeyboardValue.text 
+                m.sec.Write("UserNameRegistry",m.myKeyboardValue.text)
+                m.sec.Flush()               
                 m.myKeyboardValue.visible = false
                 m.myUserName.setFocus(true)
             
             else if m.field = "userPass" 
                 print "entering user pass"
                 m.myUserPass.text = m.myKeyboardValue.text
+                m.sec.Write("UserPasswordRegistry",m.myKeyboardValue.text)
+                m.sec.Flush()  
                 m.myKeyboardValue.visible = false
                 m.myUserPass.setFocus(true)            
             end if

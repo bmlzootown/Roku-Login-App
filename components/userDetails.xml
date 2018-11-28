@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+<component name="userDetails" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<!-- importing main handler -->
+    <script type="text/brightscript" uri="pkg:/components/userDetails.brs" />
+    
+    <interface>
+    	<field type="string" id="userNameLabel" onChange="onDisplayUserName" />
+    </interface>    
+    
+    <children> 
+    
+    <Rectangle
+  	id="bgRectangle"
+  	color="0x000000FF"
+  	width="1920"
+  	height="1080"
+  	translation="[0,0]"
+  	/>
+  	
+  	<Poster
+  	id="userPoster"
+  	uri="pkg:/images/amazon1_focus_fhd.jpeg"
+  	width="1920"
+  	height="1080"
+  	translation="[0,0]"
+  	/>
+    
+    <LayoutGroup 
+    id="userOutput"
+    vertAlignment="center"
+    horizAlignment="center"
+    translation="[960,540]"
+    >
+    
+    <Label
+    id="userName" 
+    height = "150" 
+    text = "User Name"    
+    />
+    
+    <Button
+    id="seePoster" 
+    iconUri=""
+    focusedIconUri=""
+    textColor= "0xFFFF00"
+    height = "150"
+    focusedTextColor = "0xff0000" 
+    text = "See Poster"    
+    />
+    
+    </LayoutGroup>   
+    </children>
+    
+</component>
